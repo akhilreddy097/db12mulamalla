@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  - var shirts = shirt;
+  h1 Search Results
+  div(class="container-fluid")
+        each value,index in shirts
+          div(class="row",style="cursor:pointer",onclick=`buy(${index+1})`)
+             div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_color} 
+             div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_brand}
+             div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_cost}
+  
+  script. 
+       function buy(rowNo){
+         alert('You purchased item' + rowNo);
+       }
