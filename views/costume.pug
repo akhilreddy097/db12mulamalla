@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - let items = results; 
+  - let o;
+  script.
+    function buy(x){
+      alert('Purchased Item: ' + x)
+   } 
+  div(class='container-fluid')
+    div(class='row')
+      each o, c in items 
+        div(class='col-sm-3' onclick=`buy(${c})`) #{o} 
