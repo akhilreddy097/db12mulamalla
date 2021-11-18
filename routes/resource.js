@@ -1,32 +1,43 @@
 var express = require("express");
-const costume_controlers= require('../controllers/costume'); 
+const shirt_controlers= require('../controllers/shirt'); 
 var router = express.Router();
 
 // Require controller modules.
 var api_controller = require("../controllers/api");
-var costume_controller = require("../controllers/costume");
+var shirt_controller = require("../controllers/shirt");
 
 /// API ROUTE ///
 // GET resources base.
 router.get("/", api_controller.api);
 
-/// costume ROUTES ///
+/// shirt ROUTES ///
 
-// POST request for creating a costume
-router.post("/costume", costume_controller.costume_create_post);
+// POST request for creating a shirt
+router.post("/shirt", shirt_controller.shirt_create_post);
 
-// DELETE request to delete costume.
-router.delete("/costume/:id", costume_controller.costume_delete);
+// DELETE request to delete shirt.
+router.delete("/shirt/:id", shirt_controller.shirt_delete);
 
-// PUT request to update costume.
-router.put("/costume/:id", costume_controller.costume_update_put);
+// PUT request to update shirt.
+router.put("/shirt/:id", shirt_controller.shirt_update_put);
 
-// GET request for one costume.
-router.get("/costume/:id", costume_controller.costume_detail);
+// GET request for one shirt.
+router.get("/shirt/:id", shirt_controller.shirt_detail);
 
-// GET request for list of all costume items.
-router.get("/costume", costume_controller.costume_list);
+// GET request for list of all shirt items.
+router.get("/shirt", shirt_controller.shirt_list);
 
-/* GET costumes */ 
-router.get('/', costume_controlers.costume_view_all_Page ); 
+/* GET shirts */ 
+router.get('/', shirt_controlers.shirt_view_all_Page ); 
 module.exports = router; 
+
+/* GET create shirt page */ 
+router.get('/create', shirt_controlers.shirt_create_Page); 
+
+/* GET create update page */ 
+router.get('/update', shirt_controlers.shirt_update_Page); 
+
+/* GET create shirt page */ 
+router.get('/delete', shirt_controlers.shirt_delete_Page); 
+ 
+ 

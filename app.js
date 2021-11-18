@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var Costume = require("./models/costume"); 
+var shirt = require("./models/shirt"); 
 
 const connectionString = process.env.MONGO_CON
 mongoose = require('mongoose');
@@ -26,6 +26,7 @@ var usersRouter = require('./routes/users');
 var addModsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
+var shirtRouter = require('./routes/shirt');
 
 
 var app = express();
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/addmods', addModsRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
+app.use('/shirt',shirtRouter)
 
 
 
@@ -66,11 +68,11 @@ app.use(function(err, req, res, next) {
 // We can seed the collection if needed on server start 
 async function recreateDB(){ 
   // Delete everything 
-  await Costume.deleteMany(); 
+  await shirt.deleteMany(); 
  
-  let instance1 = new Costume({costume_type:"halloween",  size:'large', cost:32.7});
-  let instance2 = new Costume({costume_type:"party",  size:'large', cost:25.4});
-  let instance3 = new Costume({costume_type:"casual",  size:'large', cost:76.9});
+  let instance1 = new shirt({shirt_type:"halloween",  size:'large', cost:32.7});
+  let instance2 = new shirt({shirt_type:"party",  size:'large', cost:25.4});
+  let instance3 = new shirt({shirt_type:"casual",  size:'large', cost:76.9});
 
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
