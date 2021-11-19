@@ -1,16 +1,22 @@
 extends layout
 
 block content
-  - var shirts = shirt;
+  - var shirts = results;
   h1 Search Results
   div(class="container-fluid")
         each value,index in shirts
-          div(class="row",style="cursor:pointer",onclick=`buy(${index+1})`)
-             div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_color} 
-             div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_brand}
-             div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_cost}
+          - let destination = `dispatch(\"/shirt/update?id=${value._id}\")` 
+          div(class="row m-1",style="cursor:pointer",onclick=`buy(${index+1})`)
+          div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_type} 
+          div(class="col-lg-2 col-4 col-sm-2") #{value.size}
+          div(class="col-lg-2 col-4 col-sm-2") #{value.cost}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
   
   script. 
        function buy(rowNo){
          alert('You purchased item' + rowNo);
        }
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+       }       

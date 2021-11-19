@@ -10,15 +10,10 @@ class shirt {
   }
 }
 
-/* GET shirt page. */
-router.get('/', function(req, res, next) {
-  const shirt1 = new shirt('blue', "nike", '10.29');
-  const shirt2 = new shirt('red', "holister", '20.11');
-  const shirt3 = new shirt('green', "puma", '40.12');
-  res.render('shirt', {shirt : [shirt1, shirt2, shirt3]});
-});
-
 // GET request for one shirt. 
+router.get('/', shirt_controller.shirt_view_all_Page); 
+
+
 router.get('/shirt/:id', shirt_controller.shirt_detail); 
 
 module.exports = router;

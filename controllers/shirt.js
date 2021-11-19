@@ -1,11 +1,5 @@
 var shirt = require("../models/shirt");
 
-// List of all shirts
-exports.shirt_list = function (req, res) {
-  res.send("NOT IMPLEMENTED: shirt list");
-};
-
-
 
 // Handle shirt create on POST.
 exports.shirt_create_post = async function (req, res) {
@@ -43,7 +37,9 @@ exports.shirt_delete = async function(req, res) {
 exports.shirt_list = async function(req, res) { 
   try{ 
       theshirts = await shirt.find(); 
-      res.send(theshirts); 
+      // res.send(theshirts); 
+      console.log(theshirts,'Shirts list cjheckong');
+      res.render('shirt', { title: 'Shirts List', results: theshirts }); 
   } 
   catch(err){ 
       res.status(500); 
@@ -56,6 +52,7 @@ exports.shirt_list = async function(req, res) {
 exports.shirt_view_all_Page = async function(req, res) { 
   try{ 
       theshirt = await shirt.find(); 
+      console.log(theshirt,'dd');
       res.render('shirt', { title: 'shirt Search Results', results: theshirt }); 
   } 
   catch(err){ 
