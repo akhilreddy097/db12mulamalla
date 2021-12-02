@@ -10,6 +10,15 @@ class shirt {
   }
 }
 
+// redirect to login. 
+const secured = (req, res, next) => { 
+  if (req.user){ 
+    return next(); 
+  } 
+  req.session.returnTo = req.originalUrl; 
+  res.redirect("/login"); 
+} 
+
 // GET request for one shirt. 
 router.get('/', shirt_controller.shirt_view_all_Page); 
 
@@ -22,10 +31,10 @@ module.exports = router;
 router.get('/detail', shirt_controller.shirt_view_one_Page);
 
 /* GET create shirt page */ 
-router.get('/create',shirt_controller.shirt_create_Page); 
+router.get('/create', secured, shirt_controller.shirt_create_Page); 
 
 /* GET create update page */ 
-router.get('/update',shirt_controller.shirt_update_Page); 
+router.get('/update', secured, shirt_controller.shirt_update_Page); 
 
 /* GET create shirt page */ 
-router.get('/delete',shirt_controller.shirt_delete_Page); 
+router.get('/delete', secured, shirt_controller.shirt_delete_Page); 

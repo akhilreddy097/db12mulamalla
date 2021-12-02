@@ -6,11 +6,15 @@ block content
   div(class="container-fluid")
         each value,index in shirts
           - let destination = `dispatch(\"/shirt/update?id=${value._id}\")` 
+          - let detail=`dispatch(\"/shirt/detail/?id=${value ._id}\")`
+          - let del=`dispatch(\"/shirt/delete/?id=${value._id}\")`
           div(class="row m-1",style="cursor:pointer",onclick=`buy(${index+1})`)
           div(class="col-lg-2 col-4 col-sm-2") #{value.shirt_type} 
           div(class="col-lg-2 col-4 col-sm-2") #{value.size}
           div(class="col-lg-2 col-4 col-sm-2") #{value.cost}
           button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-secondary ml-2", onclick= detail) Detail
+          button.btn( class="btn-warning ml-2", onclick= del) Delete
   
   script. 
        function buy(rowNo){
